@@ -3,9 +3,11 @@
 
 typedef struct node{
     int value;
+    int position;
+    struct node* cible;
     struct node* next;
     struct node* previous;   
-} node ; 
+} node;
 
 typedef struct stack {
     node *head;

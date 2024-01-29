@@ -1,5 +1,5 @@
 #include "push_swap.h"
-//swap a or b
+
 void swap(stack **pile)
 {
     if ((*pile)->head != NULL && (*pile)->head->next != NULL)
@@ -20,7 +20,7 @@ void push(stack **s1, stack **s2)
     {
         node *topush = (*s1)->head;
         node *previouss1= topush->next;
-        // no olvides incializarlo con NULL
+        // NULL
         if (previouss1)
             previouss1->previous = NULL;
         (*s1)->head = previouss1;
