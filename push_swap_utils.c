@@ -46,7 +46,7 @@ int check_duplicate(stack *pile, int nbr)
     node *temp;
 
     temp = pile->head;
-    while (temp != NULL)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            &&         )
+    while (temp != NULL)
     {
         if(temp->value == nbr)
             return (1);
@@ -54,3 +54,4 @@ int check_duplicate(stack *pile, int nbr)
     }
     return (0);
 }
+
