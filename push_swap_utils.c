@@ -54,4 +54,15 @@ int check_duplicate(stack *pile, int nbr)
     }
     return (0);
 }
-
+void update_position(stack **a)
+{
+    int i;
+    
+    i = 0;
+    while((*a)->head)
+    {
+        (*a)->head->position = i;
+        (*a)->head = (*a)->head->next;
+        i++;
+    }
+}

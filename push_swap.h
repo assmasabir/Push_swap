@@ -8,7 +8,7 @@ typedef struct node{
     int value;
     int position;
     int final_rank;
-    struct node* cible;
+    int cible_pos;
     struct node* next;
     struct node* previous;   
 } node;

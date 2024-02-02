@@ -13,7 +13,7 @@ int get_max_rank(stack *pile)
     return (max);
 }
 
-void simple_sort(stack **pile)
+void three_sort(stack **pile)
 {
    int max;
 
