@@ -8,7 +8,8 @@ typedef struct node{
     int value;
     int position;
     int final_rank;
-    int cible_pos;
+    int cost;
+    struct node *cible;
     struct node* next;
     struct node* previous;   
 } node;

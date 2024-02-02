@@ -61,7 +61,7 @@ void rrb(stack **b)
     reverse_rotate(b);
     write(1,"rrb\n",3);
 }
-void rr(stack **a, stack **b)
+void rrr(stack **a, stack **b)
 {
     reverse_rotate(a);
     reverse_rotate(b);

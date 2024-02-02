@@ -1,9 +1,9 @@
 #include "push_swap.h"
-int less_median(int final_rank, int sizeofa)
+int less_median(int final_rank, int size)
 {
     int median;
 
-    median = sizeofa/2;
+    median = size/2;
     if(final_rank <  median)
         return(1);
     else
@@ -32,25 +32,26 @@ void move_to_b(stack **a, stack **b, int size_of_a)
     update_position(a);
     update_position(b);
 }
-int find_smallest_value(stack *a)
+node *node_with_smallest_value(stack *a)
 {
     int var;
-    int position;
+    node *temp;
 
     var = a->head->value;
-    position = a->head->position;
+    temp = a->head;
     while(a->head)
     {
         a->head = a->head->next;
         if(var < a->head->value)
         {
             var = a->head->value;
-            position = a->head->position;
+            temp = a->head;
         }
     }
-    return(position);
+    return(temp);
 }
-void set_target_position(stack **a, stack **b)
+
+void set_target_node(stack **a, stack **b)
 {
     int var;
 
@@ -62,22 +63,55 @@ void set_target_position(stack **a, stack **b)
             if((*a)->head->value > (*b)->head->value && var < (*a)->head->value - (*b)->head->value)
             {
                 var = (*a)->head->value - (*b)->head->value;
-                (*b)->head->cible_pos = (*a)->head->position;
+                (*b)->head->cible = (*a)->head;
             }
             (*a)->head = (*a)->head->next;
         }
         if(var == INT_MIN)
         {
-            (*b)->head->cible_pos = find_smallest_value(*a);      
+            (*b)->head->cible = node_with_smallest_value(*a);
         }
         (*b)->head = (*b)->head->next;
     }
 }
-void set_cost(stack **b)
+void set_cost(stack **a, stack **b)
 {
-    
+    int size_of_a;
+    int size_of_b;
+
+    size_of_a = ft_lstsize(*a);
+    size_of_a = ft_lstsize(*b);
+    while((*a)->head)
+    {
+        if(less_median((*a)->head->final_rank, size_of_a))
+            (*a)->head->cost = (*a)->head->position;
+        else
+            (*a)->head->cost = -(size_of_a - (*a)->head->position);
+        (*a)->head = (*a)->head->next;
+    }
+       while((*b)->head)
+    {
+        if(less_median((*b)->head->final_rank, size_of_b))
+            (*b)->head->cost = (*b)->head->position;
+        else
+            (*b)->head->cost = -(size_of_b - (*b)->head->position);
+        (*b)->head = (*b)->head->next;
+    }
 }
+int cost_sum(int cost_a, int cost_b)
+{
+    int sum;
+
+    if(cost_a < 0)
+        cost_a = -cost_a;
+    if(cost_b < 0)
+        cost_b = -cost_b;
+    sum = cost_a + cost_b;
+    return (sum);
+}
+
+
 void big_sort(stack **a, stack **b)
 {
-    
+    while()
 }
