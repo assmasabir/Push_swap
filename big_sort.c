@@ -1,4 +1,5 @@
 #include "push_swap.h"
+
 int less_median(int final_rank, int size)
 {
     int median;
@@ -110,8 +111,42 @@ int cost_sum(int cost_a, int cost_b)
     return (sum);
 }
 
+int position_of_node_with_smallest_cost(stack *pile)
+{
+    int pos;
+    int cost;
 
+    cost = cost_sum(pile->head->cost, pile->head->cible->cost);
+    pos = 0;
+    while (pile->head)
+    {
+        pile->head = pile->head->next;
+        if (cost > cost_sum(pile->head->cost, pile->head->cible->cost))
+        {
+            cost = cost_sum(pile->head->cost, pile->head->cible->cost);
+            pos = pile->head->position;
+        }
+    }
+    return(pos);
+}
 void big_sort(stack **a, stack **b)
 {
+    node *temp;
+    int cost_a;`
+    int cost_b;
+
+    while((*b)->head)
+    {
+        if((*a)->head->position == position_of_node_with_smallest_cost(*b))
+        {
+            temp = (*a)->head;
+            break;
+        }
+        (*b)->head = (*b)->head->next;
+    }
     while()
+    {
+        cost_a = temp;
+        cost_b = 
+    }
 }
