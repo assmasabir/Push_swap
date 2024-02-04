@@ -172,9 +172,14 @@ void big_sort(stack **a, stack **b)
         }
         else if(cost_a >= 0 && cost_b >= 0)
         {
+            while (cost_a == 0 || cost_b == 0)
+            {
+                ra(a,b);
+                update_stacks(a, b);
+            }
             while(cost_a == 0 || cost_b == 0)
             {
-                ss(a, b);
+                rr(a, b);
                 update_stacks(a,b);
             }
             if(cost_a == 0 && cost_b > 0)
@@ -199,22 +204,22 @@ void big_sort(stack **a, stack **b)
         {
             while(cost_a == 0 || cost_b == 0)
             {
-                (a, b);
+                rrr(a, b);
                 update_stacks(a,b);
             }
-            if(cost_a == 0 && cost_b > 0)
+            if(cost_a == 0 && cost_b < 0)
             {
                 while(cost_b != 0)
                 {
-                    rb(b);
+                    rrb(b);
                     update_stacks(a,b);
                 }
             }
-            if(cost_b == 0 && cost_a > 0)
+            if(cost_b == 0 && cost_a < 0)
             {
                 while(cost_a != 0)
                 {
-                    ra(b);
+                    rra(b);
                     update_stacks(a,b);
                 }
             }
