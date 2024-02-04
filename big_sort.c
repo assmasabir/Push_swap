@@ -76,6 +76,7 @@ void set_target_node(stack **a, stack **b)
         (*b)->head = (*b)->head->next;
     }
 }
+//set every stack apart
 void set_cost(stack **a, stack **b)
 {
     int size_of_a;
@@ -130,6 +131,18 @@ int position_of_node_with_smallest_cost(stack *pile)
     }
     return(pos);
 }
+void update_stacks(stack **a, stack **b)
+{
+    if((*a)->head->value > (*a)->head->next->value)
+        ra(a);
+    update_position(a);
+    update_position(b);
+    set_final_rank(a);
+    set_final_rank(b);
+    set_target_node(a, b);
+    set_cost(a, b);
+}
+
 void big_sort(stack **a, stack **b)
 {
     node *temp;
@@ -148,14 +161,63 @@ void big_sort(stack **a, stack **b)
         cost_b = temp->cost;
         cost_a = temp->cible->cost;
         if(cost_a == cost_b == 1)
-            ss(a,b);
-        else if(cost_a == cost_b && cost_a > 1 && cost_b > 1)
-            rr(a,b);
-        else if(cost_a == cost_b && cost_a < 0 && cost_b < 0)
-            rrr(a,b);
-        else 
         {
-            
+            ss(a ,b);
+            update_stacks(a,b);
+        }
+        if(cost_a == cost_b == 0)
+        {
+            pa(a ,b);
+            update_stacks(a,b);
+        }
+        else if(cost_a >= 0 && cost_b >= 0)
+        {
+            while(cost_a == 0 || cost_b == 0)
+            {
+                ss(a, b);
+                update_stacks(a,b);
+            }
+            if(cost_a == 0 && cost_b > 0)
+            {
+                while(cost_b != 0)
+                {
+                    rb(b);
+                    update_stacks(a,b);
+                    // c'est preferable de mettre a jour chaque stack a part
+                }
+            }
+            if(cost_b == 0 && cost_a > 0)
+            {
+                while(cost_a != 0)
+                {
+                    ra(b);
+                    update_stacks(a,b);
+                }
+            }
+        }
+        else if(cost_a <= 0 && cost_b <= 0)
+        {
+            while(cost_a == 0 || cost_b == 0)
+            {
+                (a, b);
+                update_stacks(a,b);
+            }
+            if(cost_a == 0 && cost_b > 0)
+            {
+                while(cost_b != 0)
+                {
+                    rb(b);
+                    update_stacks(a,b);
+                }
+            }
+            if(cost_b == 0 && cost_a > 0)
+            {
+                while(cost_a != 0)
+                {
+                    ra(b);
+                    update_stacks(a,b);
+                }
+            }
         }
         
     }
