@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/01 17:06:13 by asabir           ###   ########.fr       */
+/*   Updated: 2024/02/05 16:09:56 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char**argv)
     char **str;
     stack **a;
     stack **b;
-    int size;
+    int size_of_a;
     
     if (argc == 2)
         {
@@ -25,19 +25,21 @@ int main(int argc, char**argv)
         *a = create_stack(str);
         }
     *a = create_stack(argv+1);
-    size = ft_lstsize(a);
-    if(size == 2)
+    update_position(a);
+    size_of_a = ft_lstsize(a);
+    if(size_of_a == 2)
     {
         if((*a)->head->value > (*a)->head->next->value)
             sa(a);
     }
-    if(size == 3)
+    if(size_of_a == 3)
         three_sort(a);
-    else if(size > 3)
+    else if(size_of_a > 3)
     {
-        update_position(a);
+        move_to_b(a, b, size_of_a);
+        set_target_node(a,b);
+        set_cost(a,b);
         big_sort(a, b);
-        
     }
     
 }

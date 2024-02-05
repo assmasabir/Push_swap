@@ -13,12 +13,15 @@ int less_median(int final_rank, int size)
 // ila kan ness f b kanhabso
 void move_to_b(stack **a, stack **b, int size_of_a)
 {
-   
-    while(size_of_a > 3)
+    int size_of_b;
+    
+    size_of_b = 0;
+    while(size_of_a > 3 && size_of_b < size_of_a/2)
     {
+        size_of_b = ft_lstsize(*b);
         if(less_median((*a)->head->final_rank, size_of_a))
         {
-            pa(a,b);
+            pb(b, a);
             size_of_a--;
         }
         else 
@@ -26,7 +29,7 @@ void move_to_b(stack **a, stack **b, int size_of_a)
     }
     while(size_of_a > 3)
     {
-        pa(a,b);
+        pb(b,a);
         size_of_a--;
     }
     if(size_of_a == 3)
@@ -131,6 +134,7 @@ int position_of_node_with_smallest_cost(stack *pile)
     }
     return(pos);
 }
+
 void update_stacks(stack **a, stack **b)
 {
     if((*a)->head->value > (*a)->head->next->value)
@@ -172,11 +176,6 @@ void big_sort(stack **a, stack **b)
         }
         else if(cost_a >= 0 && cost_b >= 0)
         {
-            while (cost_a == 0 || cost_b == 0)
-            {
-                ra(a,b);
-                update_stacks(a, b);
-            }
             while(cost_a == 0 || cost_b == 0)
             {
                 rr(a, b);
