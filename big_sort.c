@@ -18,7 +18,7 @@ void move_to_b(stack **a, stack **b, int size_of_a)
     size_of_b = 0;
     while(size_of_a > 3 && size_of_b < size_of_a/2)
     {
-        size_of_b = ft_lstsize(*b);
+        size_of_b = ft_lstsize((*b)->head);
         if(less_median((*a)->head->final_rank, size_of_a))
         {
             pb(b, a);
@@ -85,8 +85,8 @@ void set_cost(stack **a, stack **b)
     int size_of_a;
     int size_of_b;
 
-    size_of_a = ft_lstsize(*a);
-    size_of_a = ft_lstsize(*b);
+    size_of_a = ft_lstsize((*a)->head);
+    size_of_b = ft_lstsize((*b)->head);
     while((*a)->head)
     {
         if(less_median((*a)->head->final_rank, size_of_a))
@@ -164,12 +164,12 @@ void big_sort(stack **a, stack **b)
         }
         cost_b = temp->cost;
         cost_a = temp->cible->cost;
-        if(cost_a == cost_b == 1)
+        if(cost_a == cost_b && cost_a == 1)
         {
             ss(a ,b);
             update_stacks(a,b);
         }
-        if(cost_a == cost_b == 0)
+        if(cost_a == cost_b && cost_a == 0)
         {
             pa(a ,b);
             update_stacks(a,b);

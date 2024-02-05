@@ -6,7 +6,7 @@ void set_final_rank(stack **pile)
     int min;
     int old;
 
-    size = ft_lstsize(*pile);
+    size = ft_lstsize((*pile)->head);
     old = INT_MIN;
     while(size != 0)
     {

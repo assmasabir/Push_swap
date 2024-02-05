@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-node *create_node(int value)
+static node *create_node(int value)
 {
     node *pm;
     pm = (node *)malloc(sizeof(node));
@@ -13,6 +13,22 @@ node *create_node(int value)
     return (pm);
 }
 
+static int check_duplicate(stack *pile, int nbr)
+{
+    node *temp;
+
+    if(pile == NULL)
+        return (0);
+    temp = pile->head;
+    while (temp != NULL)
+    {
+        if(temp->value == nbr)
+            return (1);
+        temp = temp->next;
+    }
+    return (0);
+}
+
 stack *create_stack(char **str)
 {
     int     i;
@@ -21,6 +37,7 @@ stack *create_stack(char **str)
     stack   *pile;
 
     i = 0;
+    pile = NULL;
     while(str[i] != NULL)
     {
         nbr = ft_atoi(str[i]);
@@ -41,19 +58,8 @@ stack *create_stack(char **str)
     return (pile);
 }
 
-int check_duplicate(stack *pile, int nbr)
-{
-    node *temp;
 
-    temp = pile->head;
-    while (temp != NULL)
-    {
-        if(temp->value == nbr)
-            return (1);
-        temp = temp->next;
-    }
-    return (0);
-}
+
 void update_position(stack **a)
 {
     int i;

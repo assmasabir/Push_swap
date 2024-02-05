@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int get_max_rank(stack *pile)
+static int get_max_rank(stack *pile)
 {
     int max;
     max = pile->head->value;
@@ -28,7 +28,7 @@ void three_sort(stack **pile)
    }
    if((*pile)->head->next->final_rank == max)
    {
-    if((*pile)->head->final_rank > (*pile)->head->next->next->final_rank == max)
+    if((*pile)->head->final_rank > (*pile)->head->next->next->final_rank)
         rra(pile);
     else
     {
@@ -38,7 +38,7 @@ void three_sort(stack **pile)
    }
    if((*pile)->head->next->next->final_rank == max)
    {
-    if((*pile)->head->final_rank > (*pile)->head->next->final_rank == max)
+    if((*pile)->head->final_rank > (*pile)->head->next->final_rank)
         sa(pile);
    }
 }

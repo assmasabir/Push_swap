@@ -43,7 +43,7 @@ void rotate(stack **pile)
 {
     if((*pile)->head != NULL && (*pile)->head->next != NULL)
     {
-        node *last = ft_lstlast(*pile);
+        node *last = ft_lstlast((*pile)->head);
         last->previous->next = NULL;
         (*pile)->head->previous = NULL;
         last->next = (*pile)->head;
@@ -55,7 +55,7 @@ void reverse_rotate(stack **pile)
 {
     if((*pile)->head != NULL && (*pile)->head->next != NULL)
     {
-        node *last = ft_lstlast(*pile);
+        node *last = ft_lstlast((*pile)->head);
         (*pile)->head->next->previous = NULL;
         last->next = (*pile)->head;
         (*pile)->head->next = NULL;
