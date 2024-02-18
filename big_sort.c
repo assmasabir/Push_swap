@@ -11,15 +11,15 @@ int less_median(int final_rank, int size)
         return(0);
 }
 // ila kan ness f b kanhabso
-void move_to_b(stack **a, stack **b, int size_of_a)
+void move_to_b(stack *a, stack *b, int size_of_a)
 {
     int size_of_b;
     
     size_of_b = 0;
     while(size_of_a > 3 && size_of_b < size_of_a/2)
     {
-        size_of_b = ft_lstsize((*b)->head);
-        if(less_median((*a)->head->final_rank, size_of_a))
+        size_of_b = ft_lstsize(b);
+        if(less_median(a->head->final_rank, size_of_a))
         {
             pb(b, a);
             size_of_a--;
@@ -56,52 +56,52 @@ node *node_with_smallest_value(stack *a)
     return(temp);
 }
 
-void set_target_node(stack **a, stack **b)
+void set_target_node(stack *a, stack *b)
 {
     int var;
 
     var = INT_MIN;
-    while((*b)->head)
+    while(b->head)
     {
-        while ((*a)->head)
+        while (a->head)
         {
-            if((*a)->head->value > (*b)->head->value && var < (*a)->head->value - (*b)->head->value)
+            if(a->head->value > b->head->value && var < a->head->value - b->head->value)
             {
-                var = (*a)->head->value - (*b)->head->value;
-                (*b)->head->cible = (*a)->head;
+                var = a->head->value - b->head->value;
+                b->head->cible = a->head;
             }
-            (*a)->head = (*a)->head->next;
+            a->head = a->head->next;
         }
         if(var == INT_MIN)
         {
-            (*b)->head->cible = node_with_smallest_value(*a);
+            b->head->cible = node_with_smallest_value(a);
         }
-        (*b)->head = (*b)->head->next;
+        b->head = b->head->next;
     }
 }
 //set every stack apart
-void set_cost(stack **a, stack **b)
+void set_cost(stack *a, stack *b)
 {
     int size_of_a;
     int size_of_b;
 
-    size_of_a = ft_lstsize((*a)->head);
-    size_of_b = ft_lstsize((*b)->head);
-    while((*a)->head)
+    size_of_a = ft_lstsize(a);
+    size_of_b = ft_lstsize(b);
+    while(a->head)
     {
-        if(less_median((*a)->head->final_rank, size_of_a))
-            (*a)->head->cost = (*a)->head->position;
+        if(less_median(a->head->final_rank, size_of_a))
+            a->head->cost = a->head->position;
         else
-            (*a)->head->cost = -(size_of_a - (*a)->head->position);
-        (*a)->head = (*a)->head->next;
+            a->head->cost = -(size_of_a - a->head->position);
+        a->head = a->head->next;
     }
-       while((*b)->head)
+       while(b->head)
     {
-        if(less_median((*b)->head->final_rank, size_of_b))
-            (*b)->head->cost = (*b)->head->position;
+        if(less_median(b->head->final_rank, size_of_b))
+            b->head->cost = b->head->position;
         else
-            (*b)->head->cost = -(size_of_b - (*b)->head->position);
-        (*b)->head = (*b)->head->next;
+            b->head->cost = -(size_of_b - b->head->position);
+        b->head = b->head->next;
     }
 }
 int cost_sum(int cost_a, int cost_b)
@@ -135,9 +135,9 @@ int position_of_node_with_smallest_cost(stack *pile)
     return(pos);
 }
 
-void update_stacks(stack **a, stack **b)
+void update_stacks(stack *a, stack *b)
 {
-    if((*a)->head->value > (*a)->head->next->value)
+    if(a->head->value > a->head->next->value)
         ra(a);
     update_position(a);
     update_position(b);
@@ -147,18 +147,18 @@ void update_stacks(stack **a, stack **b)
     set_cost(a, b);
 }
 
-void big_sort(stack **a, stack **b)
+void big_sort(stack *a, stack *b)
 {
     node *temp;
     int cost_a;
     int cost_b;
 
-    while(*b)
+    while(b)
     {
-        temp = (*b)->head;
+        temp = b->head;
         while(temp)
         {
-            if(temp->position == position_of_node_with_smallest_cost(*b))
+            if(temp->position == position_of_node_with_smallest_cost(b))
                 break;
             temp = temp->next;
         }

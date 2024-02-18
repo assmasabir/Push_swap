@@ -1,64 +1,61 @@
 #include "push_swap.h"
 
-void swap(stack **pile)
+void swap(stack *pile)
 {
-    if ((*pile)->head != NULL && (*pile)->head->next != NULL)
+    if (pile->head != NULL && pile->head->next != NULL)
     {
-    node *first = (*pile)->head;
-    node *second = first->next;
-    first->next = second->next;
-    first->previous = second;
-    second->next = first;
-    second->previous = NULL;
-    (*pile)->head = second;
+        node *first = pile->head;
+        node *second = first->next;
+        first->next = second->next;
+
+        second->next = first;
+
+        pile->head = second;
     }
 }
 
-void push(stack **s1, stack **s2)
+void push(stack *s1, stack *s2)
 {
-    if((*s1)->head != NULL )
+    if (s1->head != NULL)
     {
-        node *topush = (*s1)->head;
-        node *previouss1= topush->next;
+        node *topush = s1->head;
+        node *previouss1 = topush->next;
         // NULL
         if (previouss1)
-            previouss1->previous = NULL;
-        (*s1)->head = previouss1;
-        if(!(*s2)->head)
+            s1->head = previouss1;
+        else if (!previouss1)
         {
-            (*s2)->head = topush;
-            (*s2)->head->next = NULL;
-            (*s2)->head->previous = NULL;
+            s1->head = NULL;
         }
-        else
+        if (!s2->head)
         {
-            topush->next = (*s2)->head;
-            (*s2)->head->previous = topush;
-            (*s2)->head = topush;
+            s2->head = topush;
+            s2->head->next = NULL;
+        }
+        else if (s2->head)
+        {
+            topush->next = s2->head;
+            s2->head = topush;
         }
     }
 }
 
-void rotate(stack **pile)
+void rotate(stack *pile)
 {
-    if((*pile)->head != NULL && (*pile)->head->next != NULL)
+    if (pile->head != NULL && pile->head->next != NULL)
     {
-        node *last = ft_lstlast((*pile)->head);
-        last->previous->next = NULL;
-        (*pile)->head->previous = NULL;
-        last->next = (*pile)->head;
-        (*pile)->head = last;
+        node *last = ft_lstlast(pile->head);
+        last->next = pile->head;
+        pile->head = last;
     }
 }
 
-void reverse_rotate(stack **pile)
+void reverse_rotate(stack *pile)
 {
-    if((*pile)->head != NULL && (*pile)->head->next != NULL)
+    if (pile->head != NULL && pile->head->next != NULL)
     {
-        node *last = ft_lstlast((*pile)->head);
-        (*pile)->head->next->previous = NULL;
-        last->next = (*pile)->head;
-        (*pile)->head->next = NULL;
-        (*pile)->head->previous = last;
+        node *last = ft_lstlast(pile->head);
+        last->next = pile->head;
+        pile->head->next = NULL;
     }
 }

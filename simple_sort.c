@@ -13,22 +13,22 @@ static int get_max_rank(stack *pile)
     return (max);
 }
 
-void three_sort(stack **pile)
+void three_sort(stack *pile)
 {
    int max;
 
-   max = get_max_rank(*pile);
-   if((*pile)->head->final_rank == max)
+   max = get_max_rank(pile);
+   if(pile->head->final_rank == max)
    {
-    if((*pile)->head->next->final_rank > (*pile)->head->next->next->final_rank)
+    if(pile->head->next->final_rank > pile->head->next->next->final_rank)
     {
         ra(pile);
         sa(pile);
     }
    }
-   if((*pile)->head->next->final_rank == max)
+   if(pile->head->next->final_rank == max)
    {
-    if((*pile)->head->final_rank > (*pile)->head->next->next->final_rank)
+    if(pile->head->final_rank > pile->head->next->next->final_rank)
         rra(pile);
     else
     {
@@ -36,9 +36,9 @@ void three_sort(stack **pile)
         ra(pile);
     }
    }
-   if((*pile)->head->next->next->final_rank == max)
+   if(pile->head->next->next->final_rank == max)
    {
-    if((*pile)->head->final_rank > (*pile)->head->next->final_rank)
+    if(pile->head->final_rank > pile->head->next->final_rank)
         sa(pile);
    }
 }

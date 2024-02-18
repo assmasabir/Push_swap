@@ -1,17 +1,34 @@
 #include "push_swap.h"
 
-int	ft_lstsize(node *lst)
+int	ft_lstsize(stack *lst)
 {
 	int	length;
+	node* temp;
 
 	length = 0;
-	while (lst != NULL)
+	temp = lst->head;
+	while (temp != NULL)
 	{
-		lst = lst->next;
+		temp = temp->next;
 		length++;
 	}
 	return (length);
 }
+
+// int	ft_lstsize(stack *lst)
+// {
+// 	int	length;
+// 	node* temp;
+
+// 	length = 0;
+// 	temp = lst->head;
+// 	while (temp != NULL)
+// 	{
+// 		temp = temp->next;
+// 		length++;
+// 	}
+// 	return (length);
+// }
 
 node   *ft_lstlast(node *lst)
 {
@@ -127,8 +144,6 @@ char	**ft_split(const char *s, char c)
 		return (NULL);
 	return (res);
 }
-
-
 
 int	ft_atoi(const char *str)
 {
