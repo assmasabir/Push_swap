@@ -19,18 +19,20 @@ void push(stack *s1, stack *s2)
     if (s1->head != NULL)
     {
         node *topush = s1->head;
-        node *previouss1 = topush->next;
+        // node *previouss1 = topush->next;
         // NULL
-        if (previouss1)
-            s1->head = previouss1;
-        else if (!previouss1)
-        {
-            s1->head = NULL;
-        }
+        s1->head = s1->head->next;
+        // if (previouss1)
+        //     s1->head = previouss1;
+        // else if (!previouss1)
+        // {
+        //     s1->head = NULL;
+        // }
         if (!s2->head)
         {
             s2->head = topush;
             s2->head->next = NULL;
+            return;
         }
         else if (s2->head)
         {

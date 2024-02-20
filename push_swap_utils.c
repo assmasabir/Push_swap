@@ -9,6 +9,7 @@ static node *create_node(int value, int capacity)
         pm->value = value;
         pm->position = 0;
         pm->capacity = capacity;
+        pm->final_rank = -1;
         pm->next = NULL; 
     }
     return (pm);
@@ -43,24 +44,29 @@ stack *create_stack(char **str, int capacity)
     pile = (stack *)malloc(sizeof(stack));
     if (!pile)
         exit(1);
+        //function exit in xase of error 
     pile->head = NULL;
-        // function exit in case of error (free)
+
     while(str[i] != NULL)
     {
         nbr = ft_atoi(str[i]);
-        // if(check_duplicate(pile, nbr))
-        //     i++;
-        // else 
-        // {
         pm = create_node(nbr, capacity);
+
         temp = pile->head;
-        pm->next = temp;
-        pile->head = pm;
+        if (temp == NULL) {
+            pile->head = pm;
+        } else {
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = pm;
+        }
         i++;
     }
-
+    set_final_rank(pile);
     return (pile);
 }
+
 
 
 //prqqqqqqqqqqqqqqqqqqqqqq

@@ -1,31 +1,40 @@
 #include "push_swap.h"
 
+#include <limits.h>
+
+
+
 void set_final_rank(stack *pile)
 {
-    int size;
-    int min;
-    int old;
+    int size = ft_lstsize(pile);
+    node * highest;
 
-    size = ft_lstsize(pile);
-    old = INT_MIN;
-    while(size != 0)
+    printf("size%d", size);
+    highest = NULL;
+    while (size)
     {
-        min = INT_MIN; 
-        while (pile->head != NULL)
+        int min = INT_MIN;
+        node *current = pile->head; 
+
+        while (current != NULL)
         {
-            if(pile->head->value == INT_MIN)
-                pile->head->final_rank = 1;
-            if(pile->head->value > min && pile->head->value != old)
+            if (current->value == INT_MIN)
+                current->final_rank = 1;
+            if (current->value > min && current->final_rank == -1)
             {
-                min = pile->head->value;
-                pile->head->final_rank = size;
-            }  
-            pile->head = pile->head->next;
+                min = current->value;
+                highest = current;
+                current = current->next;
+                printf("\n=====%d\n", min);
+            }
+            else 
+            {current = current->next;} 
         }
-        old = min;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-        size--;
+        if(highest)
+        {
+            highest->final_rank = size;
+            printf("final %d: ", highest->final_rank);
+        }
+       size--;
     }
 }
-
-
-
