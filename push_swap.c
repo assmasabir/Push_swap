@@ -6,13 +6,12 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/19 19:36:28 by asabir           ###   ########.fr       */
+/*   Updated: 2024/02/20 18:26:30 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
 int main(int argc, char **argv)
 {
     char **str;
@@ -86,7 +85,7 @@ int main(int argc, char **argv)
     show(a, b, 0);
     if (argc -1 == 3)
         three_sort(a);
-    
+     printf("%d i am head", a->head->value);
      // else if(size_of_a > 3)
     // {
     //     move_to_b(a, b, size_of_a);

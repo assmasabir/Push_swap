@@ -19,7 +19,7 @@ void three_sort(stack *pile)
    int max;
 
    max = get_max_rank(pile);
-   
+    printf("%d i am head\n", pile->head->value);
    if(pile->head->final_rank == max)
    {
     ra(pile);
@@ -28,10 +28,11 @@ void three_sort(stack *pile)
    {
     rra(pile);
    }
+    printf("%d i am head\n", pile->head->value);
 
-   printf("%d i am head", pile->head->value);
     if(pile->head->final_rank > pile->head->next->final_rank)
     {
      sa(pile);
     }
+   printf("%d i am head\n", pile->head->value);
 }

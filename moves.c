@@ -45,10 +45,14 @@ void push(stack *s1, stack *s2)
 void rotate(stack *pile)
 {
     if (pile->head != NULL && pile->head->next != NULL)
-    {
-        node *last = ft_lstlast(pile->head);
-        last->next = pile->head;
-        pile->head = last;
+    {   node *to_rotate;
+        node *last;
+
+        to_rotate = pile->head;
+        last = ft_lstlast(pile->head);
+        pile->head = pile->head->next;
+        last->next = to_rotate;
+        to_rotate->next = NULL;
     }
 }
 
@@ -56,8 +60,18 @@ void reverse_rotate(stack *pile)
 {
     if (pile->head != NULL && pile->head->next != NULL)
     {
-        node *last = ft_lstlast(pile->head);
-        last->next = pile->head;
-        pile->head->next = NULL;
+        node *to_rotate = ft_lstlast(pile->head);
+        node *before_last;
+        before_last = pile->head;
+        while(before_last->next)
+        {
+            if(before_last->next->next)
+                before_last = before_last->next;
+            else
+                break;
+        }
+        to_rotate->next = pile->head;
+        pile->head = to_rotate;
+        before_last->next == NULL;
     }
 }
