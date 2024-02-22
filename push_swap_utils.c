@@ -4,13 +4,13 @@ static node *create_node(int value, int capacity)
 {
     node *pm;
     pm = (node *)malloc(sizeof(node));
-    if(pm != NULL)
+    if (pm != NULL)
     {
         pm->value = value;
         pm->position = 0;
         pm->capacity = capacity;
         pm->final_rank = -1;
-        pm->next = NULL; 
+        pm->next = NULL;
     }
     return (pm);
 }
@@ -19,12 +19,12 @@ static int check_duplicate(stack *pile, int nbr)
 {
     node *temp;
 
-    if(pile == NULL)
+    if (pile == NULL)
         return (0);
     temp = pile->head;
     while (temp != NULL)
     {
-        if(temp->value == nbr)
+        if (temp->value == nbr)
             return (1);
         temp = temp->next;
     }
@@ -33,30 +33,34 @@ static int check_duplicate(stack *pile, int nbr)
 
 stack *create_stack(char **str, int capacity)
 {
-    int     i;
-    int     nbr;
-    node    *pm;
-    stack   *pile;
-    node    *temp;
+    int i;
+    int nbr;
+    node *pm;
+    stack *pile;
+    node *temp;
 
     i = 0;
 
     pile = (stack *)malloc(sizeof(stack));
     if (!pile)
         exit(1);
-        //function exit in xase of error 
+    // function exit in xase of error
     pile->head = NULL;
 
-    while(str[i] != NULL)
+    while (str[i] != NULL)
     {
         nbr = ft_atoi(str[i]);
         pm = create_node(nbr, capacity);
 
         temp = pile->head;
-        if (temp == NULL) {
+        if (temp == NULL)
+        {
             pile->head = pm;
-        } else {
-            while (temp->next != NULL) {
+        }
+        else
+        {
+            while (temp->next != NULL)
+            {
                 temp = temp->next;
             }
             temp->next = pm;
@@ -67,24 +71,29 @@ stack *create_stack(char **str, int capacity)
     return (pile);
 }
 
-
-
-//prqqqqqqqqqqqqqqqqqqqqqq
+// prqqqqqqqqqqqqqqqqqqqqqq
 void update_position(stack *a)
 {
     int i;
     node *temp;
-    
-    
-    i=0;
-    if(!a)
+
+    i = 0;
+    int size = ft_lstsize(a);
+
+    if (!a)
         return;
-    temp = a->head;
-    // size = ft_lstsize(a);
-    while(temp)
+    if (!a->head->next)
     {
-        temp->position = i++;
-        // printf("%d pos == %d\n", temp->value, temp->position);
+        a->head->position = 0;
+        return;
+    }
+    temp = a->head;
+    while (i < size)
+    {
+        temp->position = i;
+
         temp = temp->next;
+        i++;
+        size--;
     }
 }

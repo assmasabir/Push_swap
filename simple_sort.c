@@ -16,23 +16,21 @@ static int get_max_rank(stack *pile)
 
 void three_sort(stack *pile)
 {
-   int max;
+    int max;
 
-   max = get_max_rank(pile);
-    printf("%d i am head\n", pile->head->value);
-   if(pile->head->final_rank == max)
-   {
-    ra(pile);
-   }
-   else if(pile->head->next->final_rank == max)
-   {
-    rra(pile);
-   }
-    printf("%d i am head\n", pile->head->value);
+    max = get_max_rank(pile);
 
-    if(pile->head->final_rank > pile->head->next->final_rank)
+    if (pile->head->final_rank == max)
     {
-     sa(pile);
+        ra(pile);
     }
-   printf("%d i am head\n", pile->head->value);
+    else if (pile->head->next->final_rank == max)
+    {
+        rra(pile);
+    }
+
+    if (pile->head->final_rank > pile->head->next->final_rank)
+    {
+        sa(pile);
+    }
 }

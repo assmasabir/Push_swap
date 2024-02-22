@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/20 18:26:30 by asabir           ###   ########.fr       */
+/*   Updated: 2024/02/21 02:17:14 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int main(int argc, char **argv)
     // printf("%d->%d\n\n\n\n", a->head->next->value, a->head->next->final_rank);
     // printf("%d->%d\n\n\n\n", a->head->next->next->value, a->head->next->next->final_rank);
     update_position(a);
-    
-    
+
     // printf("%d\n\n\n\n", a->head->final_rank);
     size_of_a = ft_lstsize(a);
 
@@ -83,14 +82,14 @@ int main(int argc, char **argv)
     // printf("%d\n", a->head->value);
     // printf("%d\n\n\n\n", a->head->value);
     show(a, b, 0);
-    if (argc -1 == 3)
+    if (argc - 1 == 3)
         three_sort(a);
-     printf("%d i am head", a->head->value);
-     // else if(size_of_a > 3)
-    // {
-    //     move_to_b(a, b, size_of_a);
-    //     set_target_node(a,b);
-    //     set_cost(a,b);
-    //     big_sort(a, b);
-    // }
+    //  printf("%d i am head", a->head->value);
+    else if (size_of_a > 3)
+    {
+        move_to_b(a, b, size_of_a);
+        // set_target_node(a, b);
+        // set_cost(a, b);
+        // big_sort(a, b);
+    }
 }
