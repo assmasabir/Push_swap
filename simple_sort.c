@@ -23,7 +23,7 @@ void three_sort(stack *pile)
     if (pile->head->final_rank == max)
     {
         ra(pile);
-    }
+        }
     else if (pile->head->next->final_rank == max)
     {
         rra(pile);

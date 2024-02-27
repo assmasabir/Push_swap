@@ -5,21 +5,36 @@ int less_median(int final_rank, int size)
     int median;
 
     median = size / 2;
+
     if (final_rank <= median)
         return (1);
     else
         return (0);
 }
+int less_median_pos(int pos, int size)
+{
+    int median;
+
+    median = size / 2;
+
+    if (pos <= median)
+        return (1);
+    else
+        return (0);
+}
+
 // ila kan ness f b kanhabso
 void move_to_b(stack *a, stack *b, int size_of_a)
 {
     int size_of_b;
 
     size_of_b = 0;
-    while (size_of_a > 3 && size_of_b <= size_of_a / 2)
+    int initial_size_of_a = size_of_a;
+    while (size_of_a > 3 && size_of_b < size_of_a / 2)
     {
         size_of_b = ft_lstsize(b);
-        if (less_median(a->head->final_rank, size_of_a))
+        // printf("value = %d, final rank %d, if less = %d\n", a->head->value, a->head->final_rank, less_median(a->head->final_rank, initial_size_of_a));
+        if (less_median(a->head->final_rank, initial_size_of_a))
         {
             pb(b, a);
             size_of_a--;
@@ -46,17 +61,20 @@ node *node_with_smallest_value(stack *a)
 {
     int var;
     node *temp;
+    node *iterer;
 
     var = a->head->value;
     temp = a->head;
-    while (a->head)
+    iterer = a->head;
+    while (iterer)
     {
-        a->head = a->head->next;
-        if (var < a->head->value)
+        // printf("%d\n", iterer);
+        if (var > iterer->value)
         {
-            var = a->head->value;
-            temp = a->head;
+            var = iterer->value;
+            temp = iterer;
         }
+        iterer = iterer->next;
     }
     return (temp);
 }
@@ -65,23 +83,27 @@ void set_target_node(stack *a, stack *b)
 {
     int var;
 
-    var = INT_MIN;
-    while (b->head)
+    node *tempa;
+    node *tempb;
+    tempb = b->head;
+    while (tempb)
     {
-        while (a->head)
-        {
-            if (a->head->value > b->head->value && var < a->head->value - b->head->value)
+        var = INT_MAX;
+        tempa = a->head;
+        while (tempa)
+        { // negative value ??
+            if (tempa->value > tempb->value && var > tempa->value - tempb->value)
             {
-                var = a->head->value - b->head->value;
-                b->head->cible = a->head;
+                var = tempa->value - tempb->value;
+                tempb->cible = tempa;
             }
-            a->head = a->head->next;
+            tempa = tempa->next;
         }
-        if (var == INT_MIN)
+        if (var == INT_MAX)
         {
-            b->head->cible = node_with_smallest_value(a);
+            tempb->cible = node_with_smallest_value(a);
         }
-        b->head = b->head->next;
+        tempb = tempb->next;
     }
 }
 // set every stack apart
@@ -89,24 +111,29 @@ void set_cost(stack *a, stack *b)
 {
     int size_of_a;
     int size_of_b;
+    node *tempa;
+    node *tempb;
 
     size_of_a = ft_lstsize(a);
     size_of_b = ft_lstsize(b);
-    while (a->head)
+    tempa = a->head;
+    tempb = b->head;
+    while (tempa)
     {
-        if (less_median(a->head->final_rank, size_of_a))
-            a->head->cost = a->head->position;
+        // printf("%d\n", less_median(tempa->final_rank, size_of_a));
+        if (less_median_pos(tempa->position, size_of_a))
+            tempa->cost = tempa->position;
         else
-            a->head->cost = -(size_of_a - a->head->position);
-        a->head = a->head->next;
+            tempa->cost = -(size_of_a - tempa->position);
+        tempa = tempa->next;
     }
-    while (b->head)
+    while (tempb)
     {
-        if (less_median(b->head->final_rank, size_of_b))
-            b->head->cost = b->head->position;
+        if (less_median_pos(tempb->position, size_of_b))
+            tempb->cost = tempb->position;
         else
-            b->head->cost = -(size_of_b - b->head->position);
-        b->head = b->head->next;
+            tempb->cost = -(size_of_b - tempb->position);
+        tempb = tempb->next;
     }
 }
 int cost_sum(int cost_a, int cost_b)
@@ -125,26 +152,33 @@ int position_of_node_with_smallest_cost(stack *pile)
 {
     int pos;
     int cost;
+    node *temp;
 
     cost = cost_sum(pile->head->cost, pile->head->cible->cost);
     pos = 0;
-    while (pile->head)
+    temp = pile->head;
+    while (temp)
     {
-        pile->head = pile->head->next;
-        if (cost > cost_sum(pile->head->cost, pile->head->cible->cost))
+        if (cost > cost_sum(temp->cost, temp->cible->cost))
         {
-            cost = cost_sum(pile->head->cost, pile->head->cible->cost);
-            pos = pile->head->position;
+            cost = cost_sum(temp->cost, temp->cible->cost);
+            pos = temp->position;
         }
+        temp = temp->next;
     }
     return (pos);
 }
 
 void update_stacks(stack *a, stack *b)
 {
-    if (a->head->value > a->head->next->value)
-        ra(a);
+    // hadi laaaaach
+    //  if (a->head->value > a->head->next->value)
+    //  {
+    //      printf("heeeeeeeeere\n");
+    //      ra(a);
+    //  }
     update_position(a);
+
     update_position(b);
     set_final_rank(a);
     set_final_rank(b);
@@ -157,34 +191,53 @@ void big_sort(stack *a, stack *b)
     node *temp;
     int cost_a;
     int cost_b;
+    node *tempb;
 
-    while (b)
+    tempb = b->head;
+
+    while (tempb)
     {
+
         temp = b->head;
         while (temp)
         {
+
             if (temp->position == position_of_node_with_smallest_cost(b))
                 break;
             temp = temp->next;
         }
+
         cost_b = temp->cost;
         cost_a = temp->cible->cost;
+
         if (cost_a == cost_b && cost_a == 1)
         {
             ss(a, b);
             update_stacks(a, b);
         }
-        if (cost_a == cost_b && cost_a == 0)
+
+        else if (cost_a == cost_b && cost_a == 0)
         {
+            tempb = temp->next;
             pa(a, b);
+            // show(a,b,0);
             update_stacks(a, b);
+            node *test;
+            test = a->head;
+            // while (test)
+            // {
+            //     printf("%d -> %d\n", test->value, test->cost);
+            //     test = test->next;
+            // }
         }
         else if (cost_a >= 0 && cost_b >= 0)
         {
-            while (cost_a == 0 || cost_b == 0)
+            while (cost_a != 0 && cost_b != 0)
             {
                 rr(a, b);
                 update_stacks(a, b);
+                cost_b = temp->cost;
+                cost_a = temp->cible->cost;
             }
             if (cost_a == 0 && cost_b > 0)
             {
@@ -192,24 +245,37 @@ void big_sort(stack *a, stack *b)
                 {
                     rb(b);
                     update_stacks(a, b);
+                    cost_b = temp->cost;
                     // c'est preferable de mettre a jour chaque stack a part
                 }
             }
             if (cost_b == 0 && cost_a > 0)
             {
+
                 while (cost_a != 0)
                 {
-                    ra(b);
+                    ra(a);
                     update_stacks(a, b);
+
+                    cost_a = temp->cible->cost;
                 }
+            }
+            if (cost_a == 0 && cost_b == 0)
+            {
+                tempb = temp->next;
+                pa(a, b);
+                // show(a,b,0);
+                update_stacks(a, b);
             }
         }
         else if (cost_a <= 0 && cost_b <= 0)
         {
-            while (cost_a == 0 || cost_b == 0)
+            while (cost_a != 0 && cost_b != 0)
             {
                 rrr(a, b);
                 update_stacks(a, b);
+                cost_b = temp->cost;
+                cost_a = temp->cible->cost;
             }
             if (cost_a == 0 && cost_b < 0)
             {
@@ -217,13 +283,73 @@ void big_sort(stack *a, stack *b)
                 {
                     rrb(b);
                     update_stacks(a, b);
+                    cost_b = temp->cost;
                 }
             }
             if (cost_b == 0 && cost_a < 0)
             {
                 while (cost_a != 0)
                 {
-                    rra(b);
+                    rra(a);
+                    update_stacks(a, b);
+                    cost_a = temp->cible->cost;
+                }
+            }
+            if (cost_a == 0 && cost_b == 0)
+            {
+                tempb = temp->next;
+                pa(a, b);
+                // show(a,b,0);
+                update_stacks(a, b);
+            }
+        }
+        else if (cost_a <= 0 && cost_b >= 0)
+        {
+            while (cost_a != 0)
+            {
+                rra(a);
+
+                update_stacks(a, b);
+                cost_a = temp->cible->cost;
+            }
+            if (cost_b > 0)
+            {
+                while (cost_b != 0)
+                {
+                    rb(b);
+                    update_stacks(a, b);
+                    cost_b = temp->cost;
+                }
+                if (cost_b == 0)
+                {
+                    tempb = temp->next;
+                    pa(a, b);
+                    // show(a,b,0);
+                    update_stacks(a, b);
+                }
+            }
+        }
+        else if (cost_b <= 0 && cost_a >= 0)
+        {
+            while (cost_a != 0)
+            {
+                ra(a);
+                update_stacks(a, b);
+                cost_a = temp->cible->cost;
+            }
+            if (cost_b < 0)
+            {
+                while (cost_b != 0)
+                {
+                    rrb(b);
+                    update_stacks(a, b);
+                    cost_b = temp->cost;
+                }
+                if (cost_b == 0)
+                {
+                    tempb = temp->next;
+                    pa(a, b);
+                    // show(a,b,0);
                     update_stacks(a, b);
                 }
             }

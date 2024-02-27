@@ -68,6 +68,7 @@ stack *create_stack(char **str, int capacity)
         i++;
     }
     set_final_rank(pile);
+
     return (pile);
 }
 
@@ -78,22 +79,26 @@ void update_position(stack *a)
     node *temp;
 
     i = 0;
-    int size = ft_lstsize(a);
 
-    if (!a)
+    if (!a->head)
         return;
-    if (!a->head->next)
+    if (!(a->head->next))
     {
         a->head->position = 0;
         return;
     }
     temp = a->head;
-    while (i < size)
+    while (temp)
     {
         temp->position = i;
 
         temp = temp->next;
         i++;
-        size--;
     }
+    // node *test = a->head;
+    // while (test)
+    // {
+    //     printf("\n%d = %d\n", test->value, test->position);
+    //     test = test->next;
+    // }
 }
