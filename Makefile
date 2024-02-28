@@ -6,13 +6,13 @@
 #    By: asabir <asabir@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 16:39:17 by asabir            #+#    #+#              #
-#    Updated: 2024/02/27 02:11:06 by asabir           ###   ########.fr        #
+#    Updated: 2024/02/27 20:44:43 by asabir           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS =-Wall -Wextra -Werror
 CFLAGS += -fsanitize=address -g3 
 
 SRC = \

@@ -34,7 +34,7 @@ void move_to_b(stack *a, stack *b, int size_of_a)
     {
         size_of_b = ft_lstsize(b);
         // printf("value = %d, final rank %d, if less = %d\n", a->head->value, a->head->final_rank, less_median(a->head->final_rank, initial_size_of_a));
-        if (less_median(a->head->final_rank, initial_size_of_a))
+        if (!less_median(a->head->final_rank, initial_size_of_a))
         {
             pb(b, a);
             size_of_a--;
@@ -353,6 +353,44 @@ void big_sort(stack *a, stack *b)
                     update_stacks(a, b);
                 }
             }
+        }
+    }
+}
+void resort(stack *pile)
+{
+    node *temp;
+    int min;
+    int min_final_rank;
+    int size;
+
+    size = ft_lstsize(pile);
+    temp = pile->head;
+    min = temp->value;
+    min_final_rank = temp->final_rank;
+    while (temp)
+    {
+        if (min > temp->value)
+        {
+            min = temp->value;
+            min_final_rank = temp->final_rank;
+            temp = temp->next;
+        }
+        else
+            temp = temp->next;
+    }
+
+    if (!less_median(min_final_rank, size))
+    {
+        while (min != pile->head->value)
+        {
+            rra(pile);
+        }
+    }
+    else
+    {
+        while (min != pile->head->value)
+        {
+            ra(pile);
         }
     }
 }

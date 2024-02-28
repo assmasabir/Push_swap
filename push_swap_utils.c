@@ -15,22 +15,6 @@ static node *create_node(int value, int capacity)
     return (pm);
 }
 
-static int check_duplicate(stack *pile, int nbr)
-{
-    node *temp;
-
-    if (pile == NULL)
-        return (0);
-    temp = pile->head;
-    while (temp != NULL)
-    {
-        if (temp->value == nbr)
-            return (1);
-        temp = temp->next;
-    }
-    return (0);
-}
-
 stack *create_stack(char **str, int capacity)
 {
     int i;

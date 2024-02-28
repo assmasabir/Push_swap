@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-int	ft_lstsize(stack *lst)
+int ft_lstsize(stack *lst)
 {
-	int	length;
-	node* temp;
+	int length;
+	node *temp;
 
 	length = 0;
 	temp = lst->head;
@@ -30,7 +30,7 @@ int	ft_lstsize(stack *lst)
 // 	return (length);
 // }
 
-node   *ft_lstlast(node *lst)
+node *ft_lstlast(node *lst)
 {
 	if (lst == NULL)
 	{
@@ -43,10 +43,10 @@ node   *ft_lstlast(node *lst)
 	return (lst);
 }
 
-static int	number_of_strings(const char *str, char c)
+static int number_of_strings(const char *str, char c)
 {
-	int	i;
-	int	len;
+	int i;
+	int len;
 
 	i = 0;
 	len = 0;
@@ -64,10 +64,10 @@ static int	number_of_strings(const char *str, char c)
 	return (len);
 }
 
-static char	*ft_strndup(const char *str, int n)
+static char *ft_strndup(const char *str, int n)
 {
-	int		j;
-	char	*dest;
+	int j;
+	char *dest;
 
 	j = 0;
 	if (str == NULL)
@@ -84,9 +84,9 @@ static char	*ft_strndup(const char *str, int n)
 	return (dest);
 }
 
-static char	**freetab(char **tab)
+static char **freetab(char **tab)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (tab[i] != NULL)
@@ -98,11 +98,11 @@ static char	**freetab(char **tab)
 	return (NULL);
 }
 
-char	**make(const char *s, char **res, char c)
+char **make(const char *s, char **res, char c)
 {
-	int	i;
-	int	j;
-	int	len;
+	int i;
+	int j;
+	int len;
 
 	i = 0;
 	j = 0;
@@ -126,10 +126,10 @@ char	**make(const char *s, char **res, char c)
 	return (res);
 }
 
-char	**ft_split(const char *s, char c)
+char **ft_split(const char *s, char c)
 {
-	char	**res;
-	int		n;
+	char **res;
+	int n;
 
 	if (s == NULL)
 	{
@@ -145,16 +145,16 @@ char	**ft_split(const char *s, char c)
 	return (res);
 }
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	long	res;
-	int		i;
-	int		sign;
+	long res;
+	int i;
+	int sign;
 
 	res = 0;
 	i = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	while (str[i] == 32)
 		i++;
 	if (str[i] == 45)
 	{
@@ -168,5 +168,6 @@ int	ft_atoi(const char *str)
 		res = (str[i] - '0') + (res * 10);
 		i++;
 	}
+
 	return (sign * res);
 }
