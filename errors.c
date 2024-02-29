@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/29 14:15:33 by asabir            #+#    #+#             */
+/*   Updated: 2024/02/29 14:17:39 by asabir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int check_duplicate(stack *pile, int nbr)
+int	check_duplicate(t_stack *pile, int nbr)
 {
-	node *temp;
+	t_node	*temp;
 
 	if (pile == NULL)
 		return (0);
@@ -10,29 +22,66 @@ int check_duplicate(stack *pile, int nbr)
 	while (temp != NULL)
 	{
 		if (temp->value == nbr)
-			return (1);
+			return (0);
 		temp = temp->next;
 	}
-	return (0);
+	return (1);
 }
-int check_if_interger(int c)
+
+int	check_if_integer(long c)
 {
 	if (c >= INT_MIN && c <= INT_MAX)
 		return (1);
 	else
 		return (0);
 }
-// int check_if_number(int c)
-// {
-// }
-void free_and_exit(stack *a, stack *b)
+
+int	check_if_number(char *str)
 {
-	while (a->head)
+	int	i;
+
+	i = 0;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
+	while (str[i] != '\0')
 	{
-		a->head = a->head->next;
+		if (ft_isdigit(str[i]))
+			i++;
+		else
+			return (0);
 	}
-	free(a);
-	free(b);
-	write(1, "", )
-		exit(1);
+	return (1);
+}
+
+void	free_matrice(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+// tal vez tengo q iniciar la cabeza de mi t_stack cn null
+void	free_and_exit(t_stack *a, int display)
+{
+	t_node	*tmp;
+
+	if (a->head)
+	{
+		while (a->head)
+		{
+			tmp = a->head;
+			a->head = a->head->next;
+			free(tmp);
+		}
+		free(a);
+	}
+	if (display == 1)
+		ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
 }

@@ -1,88 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/29 13:25:08 by asabir            #+#    #+#             */
+/*   Updated: 2024/02/29 13:57:59 by asabir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static node *create_node(int value, int capacity)
+static t_node	*create_t_node(int value, int capacity)
 {
-    node *pm;
-    pm = (node *)malloc(sizeof(node));
-    if (pm != NULL)
-    {
-        pm->value = value;
-        pm->position = 0;
-        pm->capacity = capacity;
-        pm->final_rank = -1;
-        pm->next = NULL;
-    }
-    return (pm);
+	t_node	*pm;
+
+	pm = (t_node *)malloc(sizeof(t_node));
+	if (pm != NULL)
+	{
+		pm->value = value;
+		pm->position = 0;
+		pm->capacity = capacity;
+		pm->final_rank = -1;
+		pm->next = NULL;
+	}
+	return (pm);
 }
 
-stack *create_stack(char **str, int capacity)
+void	add_node_to_stack(t_stack *pile, t_node *pm)
 {
-    int i;
-    int nbr;
-    node *pm;
-    stack *pile;
-    node *temp;
+	t_node	*temp;
 
-    i = 0;
-
-    pile = (stack *)malloc(sizeof(stack));
-    if (!pile)
-        exit(1);
-    // function exit in xase of error
-    pile->head = NULL;
-
-    while (str[i] != NULL)
-    {
-        nbr = ft_atoi(str[i]);
-        pm = create_node(nbr, capacity);
-
-        temp = pile->head;
-        if (temp == NULL)
-        {
-            pile->head = pm;
-        }
-        else
-        {
-            while (temp->next != NULL)
-            {
-                temp = temp->next;
-            }
-            temp->next = pm;
-        }
-        i++;
-    }
-    set_final_rank(pile);
-
-    return (pile);
+	temp = pile->head;
+	if (temp == NULL)
+		pile->head = pm;
+	else
+	{
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = pm;
+	}
 }
 
-// prqqqqqqqqqqqqqqqqqqqqqq
-void update_position(stack *a)
+t_stack	*create_t_stack(char **str, int capacity)
 {
-    int i;
-    node *temp;
+	int		i;
+	int		nbr;
+	t_node	*pm;
+	t_stack	*pile;
 
-    i = 0;
+	i = 0;
+	pile = (t_stack *)malloc(sizeof(t_stack));
+	if (!pile)
+		free_and_exit(pile, 0);
+	pile->head = NULL;
+	while (str[i] != NULL)
+	{
+		nbr = ft_atoi(str[i]);
+		if (!check_if_number(str[i]) || !check_if_integer(nbr)
+			|| !check_duplicate(pile, nbr))
+			free_and_exit(pile, 1);
+		pm = create_t_node(nbr, capacity);
+		add_node_to_stack(pile, pm);
+		i++;
+	}
+	set_final_rank(pile);
+	return (pile);
+}
 
-    if (!a->head)
-        return;
-    if (!(a->head->next))
-    {
-        a->head->position = 0;
-        return;
-    }
-    temp = a->head;
-    while (temp)
-    {
-        temp->position = i;
+void	update_position(t_stack *a)
+{
+	int		i;
+	t_node	*temp;
 
-        temp = temp->next;
-        i++;
-    }
-    // node *test = a->head;
-    // while (test)
-    // {
-    //     printf("\n%d = %d\n", test->value, test->position);
-    //     test = test->next;
-    // }
+	i = 0;
+	if (!a->head)
+		return ;
+	if (!(a->head->next))
+	{
+		a->head->position = 0;
+		return ;
+	}
+	temp = a->head;
+	while (temp)
+	{
+		temp->position = i;
+		temp = temp->next;
+		i++;
+	}
 }

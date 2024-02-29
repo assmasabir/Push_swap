@@ -6,54 +6,69 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/28 22:22:04 by asabir           ###   ########.fr       */
+/*   Updated: 2024/02/29 13:23:41 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int main(int argc, char **argv)
+t_stack	*initialize_b_t_stack(void)
 {
+	t_stack	*b;
 
-    char **str;
-    stack *a;
-    stack *b;
-    int size_of_a;
+	b = malloc(sizeof(t_stack));
+	b->head = NULL;
+	return (b);
+}
 
-    a = NULL;
-    b = NULL;
-    if (argc < 2)
-        exit(1);
+void	handle_two_numbers(t_stack *a, int size_of_a)
+{
+	if (size_of_a == 2 && a->head->value > a->head->next->value)
+		sa(a);
+}
 
-    else if (argc == 2)
-    {
+void	sort_large_t_stack(t_stack *a, t_stack *b, int size_of_a)
+{
+	move_to_b(a, b, size_of_a);
+	set_target_t_node(a, b);
+	set_cost(a, b);
+	big_sort(a, b);
+	resort(a);
+}
 
-        str = ft_split(argv[1], ' ');
-        a = create_stack(str, argc - 1);
-    }
-    else
-        a = create_stack(argv + 1, argc - 1);
+void	clean_up(t_stack *a, t_stack *b)
+{
+	free_and_exit(a, 0);
+	if (b)
+		free(b);
+}
 
-    b = malloc(sizeof(stack));
-    b->head = NULL;
-    size_of_a = ft_lstsize(a);
-    update_position(a);
+int	main(int argc, char **argv)
+{
+	char	**str;
+	t_stack	*a;
+	t_stack	*b;
+	int		size_of_a;
 
-    if (size_of_a == 2)
-    {
-        if (a->head->value > a->head->next->value)
-            sa(a);
-    }
-    if (argc - 1 == 3)
-        three_sort(a);
-
-    else if (size_of_a > 3)
-    {
-        move_to_b(a, b, size_of_a);
-        set_target_node(a, b);
-        set_cost(a, b);
-        big_sort(a, b);
-        resort(a);
-    }
+	a = NULL;
+	b = NULL;
+	if (argc < 2)
+		exit(EXIT_FAILURE);
+	else if (argc == 2)
+	{
+		str = ft_split(argv[1], ' ');
+		a = create_t_stack(str, argc - 1);
+	}
+	else
+		a = create_t_stack(argv + 1, argc - 1);
+	size_of_a = ft_lstsize(a);
+	b = initialize_b_t_stack();
+	update_position(a);
+	handle_two_numbers(a, size_of_a);
+	if (argc - 1 == 3)
+		three_sort(a);
+	else if (size_of_a > 3)
+		sort_large_t_stack(a, b, size_of_a);
+	clean_up(a, b);
 }
