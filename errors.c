@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:15:33 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/02 18:58:05 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/03 20:20:34 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_if_number(char *str)
 	i = 0;
 	if (str[0] == '-' || str[0] == '+')
 		i++;
+	int var = i;
 	while (str[i] != '\0')
 	{
 		if (ft_isdigit(str[i]))
@@ -50,6 +51,8 @@ int	check_if_number(char *str)
 		else
 			return (0);
 	}
+	if(i != 0 && var == i)
+		return(0);
 	return (1);
 }
 
