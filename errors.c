@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:15:33 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 14:17:39 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/02 18:58:05 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	free_and_exit(t_stack *a, int display)
 		free(a);
 	}
 	if (display == 1)
-		ft_putstr_fd("Error\n", 2);
-	exit(EXIT_FAILURE);
+	{
+			ft_putstr_fd("Error\n", 2);	
+		exit(EXIT_FAILURE);
+	}
+	exit(0);
 }

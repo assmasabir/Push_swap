@@ -1,19 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: asabir <asabir@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/05 16:39:17 by asabir            #+#    #+#              #
-#    Updated: 2024/02/29 17:24:00 by asabir           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = push_swap
 CC = cc
-CFLAGS =-Wall -Wextra -Werror
-CFLAGS += -fsanitize=address -g3 
+# CFLAGS = -Wall -Wextra -Werror
+# CFLAGS += -fsanitize=address -g3 
+OBJ_D = obj
 
 SRC = \
     set_rank.c              \
@@ -31,22 +20,27 @@ SRC = \
     three_sort.c            \
     libft_functions1.c      \
     errors.c                \
-	resort.c				\
+    resort.c                \
     visualize.c
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJ_D)/,${SRC:.c=.o})
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-		$(CC) $(CFLAGS) $(OBJ) -o $(NAME) 
-#-fsanitize=address
+$(OBJ_D)/%.o: %.c | ${OBJ_D}
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME) : $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+${OBJ_D} :
+	@mkdir ${OBJ_D}
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf $(OBJ_D)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

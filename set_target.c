@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:31:57 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 13:17:27 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/03 19:11:32 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_node	*t_node_with_smallest_value(t_stack *a)
 
 void	set_target_t_node(t_stack *a, t_stack *b)
 {
-	int		var;
+	long		var;
 	t_node	*tempa;
 	t_node	*tempb;
 
@@ -46,10 +46,10 @@ void	set_target_t_node(t_stack *a, t_stack *b)
 		tempa = a->head;
 		while (tempa)
 		{
-			if (tempa->value > tempb->value && var > tempa->value
-				- tempb->value)
+			if (tempa->value > tempb->value && var > (long)tempa->value
+				- (long)tempb->value)
 			{
-				var = tempa->value - tempb->value;
+				var = (long)tempa->value - (long)tempb->value;
 				tempb->cible = tempa;
 			}
 			tempa = tempa->next;

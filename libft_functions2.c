@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:03:55 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 14:16:20 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/02 18:52:38 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if (s)
-	{
-		while (s[i] != '\0')
-			write(fd, &s[i++], 1);
-	}
+
+	while (s && s[i])
+		write(fd, &s[i++], 1);
 }
 
 int	ft_lstsize(t_stack *lst)

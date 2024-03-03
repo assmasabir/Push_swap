@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 16:41:35 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/02 16:11:25 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			ft_putstr_fd(char *s, int fd);
 int				ft_isdigit(int c);
 
 t_stack			*create_t_stack(char **str, int capacity);
-void			update_position(t_stack *a);
+void			update_position(t_node **a);
 void			three_sort(t_stack *pile);
 
 void			move_to_b(t_stack *a, t_stack *b, int size_of_a);

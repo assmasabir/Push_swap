@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:02:37 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 16:33:00 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/02 17:18:06 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	less_median(int final_rank, int size)
 
 void	update_positions(t_stack *a, t_stack *b)
 {
-	update_position(a);
-	update_position(b);
+	update_position(&(a->head));
+	update_position(&(b->head));
 }
 
 void	move_to_b(t_stack *a, t_stack *b, int size_of_a)
@@ -36,16 +36,16 @@ void	move_to_b(t_stack *a, t_stack *b, int size_of_a)
 
 	size_of_b = 0;
 	initial_size_of_a = size_of_a;
-	while (size_of_a > 3 && size_of_b < size_of_a / 2)
+	while (size_of_a > 3 && size_of_b < initial_size_of_a / 2)
 	{
-		size_of_b = ft_lstsize(b);
-		if (!less_median(a->head->final_rank, initial_size_of_a))
+		if (less_median(a->head->final_rank, initial_size_of_a))
 		{
 			pb(b, a);
 			size_of_a--;
 		}
 		else
 			ra(a);
+		size_of_b = ft_lstsize(b);
 	}
 	while (size_of_a > 3)
 	{
@@ -54,6 +54,5 @@ void	move_to_b(t_stack *a, t_stack *b, int size_of_a)
 	}
 	if (size_of_a == 3)
 		three_sort(a);
-	size_of_a = ft_lstsize(a);
 	update_positions(a, b);
 }

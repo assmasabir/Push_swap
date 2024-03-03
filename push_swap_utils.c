@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:25:08 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 13:57:59 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/02 18:49:57 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_stack	*create_t_stack(char **str, int capacity)
 		if (!check_if_number(str[i]) || !check_if_integer(nbr)
 			|| !check_duplicate(pile, nbr))
 			free_and_exit(pile, 1);
+		
 		pm = create_t_node(nbr, capacity);
 		add_node_to_stack(pile, pm);
 		i++;
@@ -69,20 +70,15 @@ t_stack	*create_t_stack(char **str, int capacity)
 	return (pile);
 }
 
-void	update_position(t_stack *a)
+void	update_position(t_node **a)
 {
 	int		i;
 	t_node	*temp;
 
 	i = 0;
-	if (!a->head)
+	if (!*a)
 		return ;
-	if (!(a->head->next))
-	{
-		a->head->position = 0;
-		return ;
-	}
-	temp = a->head;
+	temp = *a;
 	while (temp)
 	{
 		temp->position = i;
