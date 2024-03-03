@@ -35,7 +35,7 @@ t_node	*t_node_with_smallest_value(t_stack *a)
 
 void	set_target_t_node(t_stack *a, t_stack *b)
 {
-	long		var;
+	long	var;
 	t_node	*tempa;
 	t_node	*tempb;
 

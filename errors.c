@@ -39,11 +39,12 @@ int	check_if_integer(long c)
 int	check_if_number(char *str)
 {
 	int	i;
+	int	var;
 
 	i = 0;
 	if (str[0] == '-' || str[0] == '+')
 		i++;
-	int var = i;
+	var = i;
 	while (str[i] != '\0')
 	{
 		if (ft_isdigit(str[i]))
@@ -51,8 +52,8 @@ int	check_if_number(char *str)
 		else
 			return (0);
 	}
-	if(i != 0 && var == i)
-		return(0);
+	if (i != 0 && var == i)
+		return (0);
 	return (1);
 }
 
@@ -86,7 +87,7 @@ void	free_and_exit(t_stack *a, int display)
 	}
 	if (display == 1)
 	{
-			ft_putstr_fd("Error\n", 2);	
+		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	exit(0);

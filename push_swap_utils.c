@@ -61,7 +61,6 @@ t_stack	*create_t_stack(char **str, int capacity)
 		if (!check_if_number(str[i]) || !check_if_integer(nbr)
 			|| !check_duplicate(pile, nbr))
 			free_and_exit(pile, 1);
-		
 		pm = create_t_node(nbr, capacity);
 		add_node_to_stack(pile, pm);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:02:37 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/03 21:00:47 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/03 21:06:45 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,16 @@ void	move_to_b(t_stack *a, t_stack *b, int size_of_a)
 
 	size_of_b = 0;
 	initial_size_of_a = size_of_a;
-	if (size_of_a != 5 )
+	while (size_of_a > 5 && size_of_b < initial_size_of_a / 2)
 	{
-		while (size_of_a > 3 && size_of_b < initial_size_of_a / 2)
+		if (less_median(a->head->final_rank, initial_size_of_a))
 		{
-			if (less_median(a->head->final_rank, initial_size_of_a))
-			{
-				pb(b, a);
-				size_of_a--;
-			}
-			else
-				ra(a);
-			size_of_b = ft_lstsize(b);
+			pb(b, a);
+			size_of_a--;
 		}
+		else
+			ra(a);
+		size_of_b = ft_lstsize(b);
 	}
 	while (size_of_a > 3)
 	{
