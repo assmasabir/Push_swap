@@ -6,21 +6,105 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:11:16 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/03 19:34:48 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 22:12:28 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	update_stacks(t_stack *a, t_stack *b)
+void	case_1(t_stack *a, t_stack *b, int cost_a, int cost_b)
 {
-	update_position(&(a->head));
-	update_position(&(b->head));
-	set_final_rank(a);
-	set_final_rank(b);
-	set_target_t_node(a, b);
-	set_cost(a, b);
+	while (cost_a != 0 && cost_b != 0)
+	{
+		rr(a, b);
+		cost_b--;
+		cost_a--;
+	}
+	if (cost_a == 0 && cost_b > 0)
+	{
+		while (cost_b != 0)
+		{
+			rb(b);
+			cost_b--;
+		}
+	}
+	if (cost_b == 0 && cost_a > 0)
+	{
+		while (cost_a != 0)
+		{
+			ra(a);
+			cost_a--;
+		}
+	}
+	if (cost_a == 0 && cost_b == 0)
+		push_and_update(a, b);
+}
 
+void	case_2(t_stack *a, t_stack *b, int cost_a, int cost_b)
+{
+	while (cost_a != 0 && cost_b != 0)
+	{
+		rrr(a, b);
+		update_stacks(a, b);
+		cost_b++;
+		cost_a++;
+	}
+	if (cost_a == 0 && cost_b < 0)
+	{
+		while (cost_b != 0)
+		{
+			rrb(b);
+			cost_b++;
+		}
+	}
+	if (cost_b == 0 && cost_a < 0)
+	{
+		while (cost_a != 0)
+		{
+			rra(a);
+			cost_a++;
+		}
+	}
+	if (cost_a == 0 && cost_b == 0)
+		push_and_update(a, b);
+}
+
+void	case_3(t_stack *a, t_stack *b, int cost_a, int cost_b)
+{
+	while (cost_a != 0)
+	{
+		rra(a);
+		cost_a++;
+	}
+	if (cost_b > 0)
+	{
+		while (cost_b != 0)
+		{
+			rb(b);
+			cost_b--;
+		}
+		if (cost_b == 0)
+			push_and_update(a, b);
+	}
+}
+
+void	case_4(t_stack *a, t_stack *b, int cost_a, int cost_b)
+{
+	while (cost_a != 0)
+	{
+		ra(a);
+		cost_a--;
+	}
+	if (cost_b < 0)
+	{
+		while (cost_b != 0)
+		{
+			rrb(b);
+			cost_b++;
+		}
+		if (cost_b == 0)
+			push_and_update(a, b);
+	}
 }
 
 void	big_sort(t_stack *a, t_stack *b)
@@ -28,139 +112,21 @@ void	big_sort(t_stack *a, t_stack *b)
 	t_node	*temp;
 	int		cost_a;
 	int		cost_b;
-	t_node	*tempb;
 
-	tempb = b->head;
-	while (tempb)
+	while (b->head)
 	{
-
 		temp = find_node_with_smallest_cost(b);
 		cost_b = temp->cost;
 		cost_a = temp->cible->cost;
-
 		if (cost_a == cost_b && cost_a == 0)
-		{
-			tempb = temp->next;
-			pa(a, b);
-			update_stacks(a, b);
-		}
+			push_and_update(a, b);
 		else if (cost_a >= 0 && cost_b >= 0)
-		{
-			while (cost_a != 0 && cost_b != 0)
-			{
-				rr(a, b);
-				update_stacks(a, b);
-				cost_b = temp->cost;
-				cost_a = temp->cible->cost;
-			}
-			if (cost_a == 0 && cost_b > 0)
-			{
-				while (cost_b != 0)
-				{
-					rb(b);
-					update_stacks(a, b);
-					cost_b = temp->cost;
-				}
-			}
-			if (cost_b == 0 && cost_a > 0)
-			{
-				while (cost_a != 0)
-				{
-					ra(a);
-					update_stacks(a, b);
-					cost_a = temp->cible->cost;
-				}
-			}
-			if (cost_a == 0 && cost_b == 0)
-			{
-				tempb = temp->next;
-				pa(a, b);
-				// show(a,b,0);
-				update_stacks(a, b);
-			}
-		}
+			case_1(a, b, cost_a, cost_b);
 		else if (cost_a <= 0 && cost_b <= 0)
-		{
-			while (cost_a != 0 && cost_b != 0)
-			{
-				rrr(a, b);
-				update_stacks(a, b);
-				cost_b = temp->cost;
-				cost_a = temp->cible->cost;
-			}
-			if (cost_a == 0 && cost_b < 0)
-			{
-				while (cost_b != 0)
-				{
-					rrb(b);
-					update_stacks(a, b);
-					cost_b = temp->cost;
-				}
-			}
-			if (cost_b == 0 && cost_a < 0)
-			{
-				while (cost_a != 0)
-				{
-					rra(a);
-					update_stacks(a, b);
-					cost_a = temp->cible->cost;
-				}
-			}
-			if (cost_a == 0 && cost_b == 0)
-			{
-				tempb = temp->next;
-				pa(a, b);
-				// show(a,b,0);
-				update_stacks(a, b);
-			}
-		}
+			case_2(a, b, cost_a, cost_b);
 		else if (cost_a <= 0 && cost_b >= 0)
-		{
-			while (cost_a != 0)
-			{
-				rra(a);
-				update_stacks(a, b);
-				cost_a = temp->cible->cost;
-			}
-			if (cost_b > 0)
-			{
-				while (cost_b != 0)
-				{
-					rb(b);
-					update_stacks(a, b);
-					cost_b = temp->cost;
-				}
-				if (cost_b == 0)
-				{
-					tempb = temp->next;
-					pa(a, b);
-					update_stacks(a, b);
-				}
-			}
-		}
+			case_3(a, b, cost_a, cost_b);
 		else if (cost_b <= 0 && cost_a >= 0)
-		{
-			while (cost_a != 0)
-			{
-				ra(a);
-				update_stacks(a, b);
-				cost_a = temp->cible->cost;
-			}
-			if (cost_b < 0)
-			{
-				while (cost_b != 0)
-				{
-					rrb(b);
-					update_stacks(a, b);
-					cost_b = temp->cost;
-				}
-				if (cost_b == 0)
-				{
-					tempb = temp->next;
-					pa(a, b);
-					update_stacks(a, b);
-				}
-			}
-		}
+			case_4(a, b, cost_a, cost_b);
 	}
 }

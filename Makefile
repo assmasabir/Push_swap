@@ -10,6 +10,7 @@ SRC = \
     big_sort.c              \
     push_instructions.c     \
     swap_instructions.c     \
+    big_sort_utils.c        \
     reverse_rotate_instructions.c \
     rotate_instructions.c   \
     set_target.c            \
@@ -33,6 +34,7 @@ SRC2 =  \
     reverse_rotate_instructions.c \
     rotate_instructions.c   \
     set_target.c            \
+    big_sort_utils.c        \
     set_costs.c             \
     move_nodes.c            \
     libft_functions2.c      \

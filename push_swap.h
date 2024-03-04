@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 16:13:17 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 22:14:11 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,5 @@ int				check_if_number(char *str);
 void			free_and_exit(t_stack *a, int display);
 void			resort(t_stack *pile);
 char			*get_next_line(int fd);
+void			update_stacks(t_stack *a, t_stack *b);
+void			push_and_update(t_stack *a, t_stack *b);
