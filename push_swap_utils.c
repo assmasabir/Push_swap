@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:25:08 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/02 18:49:57 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 14:45:26 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,29 @@ t_stack	*create_t_stack(char **str, int capacity)
 	i = 0;
 	pile = (t_stack *)malloc(sizeof(t_stack));
 	if (!pile)
-		free_and_exit(pile, 0);
+		free_and_exit(pile, NULL, 0);
 	pile->head = NULL;
 	while (str[i] != NULL)
 	{
 		nbr = ft_atoi(str[i]);
 		if (!check_if_number(str[i]) || !check_if_integer(nbr)
 			|| !check_duplicate(pile, nbr))
-			free_and_exit(pile, 1);
+			free_and_exit(pile, NULL, 1);
 		pm = create_t_node(nbr, capacity);
 		add_node_to_stack(pile, pm);
 		i++;
 	}
 	set_final_rank(pile);
 	return (pile);
+}
+
+t_stack	*initialize_b_t_stack(void)
+{
+	t_stack	*b;
+
+	b = malloc(sizeof(t_stack));
+	b->head = NULL;
+	return (b);
 }
 
 void	update_position(t_node **a)

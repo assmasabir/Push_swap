@@ -1,47 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_instructions.c                                :+:      :+:    :+:   */
+/*   libft_functions3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 14:10:51 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 14:31:11 by asabir           ###   ########.fr       */
+/*   Created: 2024/03/04 01:29:48 by asabir            #+#    #+#             */
+/*   Updated: 2024/03/04 12:14:53 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_stack *s1, t_stack *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_node	*topush;
+	unsigned int	i;
 
-	if (s1->head != NULL)
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
 	{
-		topush = s1->head;
-		s1->head = s1->head->next;
-		if (!s2->head)
-		{
-			s2->head = topush;
-			s2->head->next = NULL;
-			return ;
-		}
-		else if (s2->head)
-		{
-			topush->next = s2->head;
-			s2->head = topush;
-		}
+		i++;
 	}
-}
-
-void	pa(t_stack *a, t_stack *b)
-{
-	push(b, a);
-	write(1, "pa\n", 3);
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	push(a, b);
-	write(1, "pb\n", 3);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

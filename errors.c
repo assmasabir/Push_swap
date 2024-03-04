@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:15:33 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/03 20:20:34 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 14:37:39 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,21 @@ int	check_if_number(char *str)
 	return (1);
 }
 
-void	free_matrice(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 // tal vez tengo q iniciar la cabeza de mi t_stack cn null
-void	free_and_exit(t_stack *a, int display)
+void	free_and_exit(t_stack *a, t_stack *b, int display)
 {
 	t_node	*tmp;
 
+	if (b && b->head)
+	{
+		while (b->head)
+		{
+			tmp = a->head;
+			b->head = b->head->next;
+			free(tmp);
+		}
+		free(b);
+	}
 	if (a->head)
 	{
 		while (a->head)
@@ -85,10 +82,15 @@ void	free_and_exit(t_stack *a, int display)
 		}
 		free(a);
 	}
+	exit(display);
+}
+
+void	exit(int display)
+{
 	if (display == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

@@ -6,10 +6,11 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/02 16:11:25 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 13:43:46 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line/get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -39,6 +40,7 @@ char			**ft_split(const char *s, char c);
 int				ft_atoi(const char *str);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_isdigit(int c);
+int				ft_strcmp(const char *s1, const char *s2);
 
 t_stack			*create_t_stack(char **str, int capacity);
 void			update_position(t_node **a);
@@ -70,10 +72,12 @@ void			set_final_rank(t_stack *pile);
 int				less_median(int final_rank, int size);
 int				cost_sum(int cost_a, int cost_b);
 t_node			*find_node_with_smallest_cost(t_stack *b);
+t_stack			*initialize_b_t_stack(void);
 
 void			show(t_stack *a, t_stack *b, int clear);
 int				check_if_integer(long c);
 int				check_duplicate(t_stack *pile, int nbr);
 int				check_if_number(char *str);
-void			free_and_exit(t_stack *a, int display);
+void			free_and_exit(t_stack *a, t_stack *b, int display);
 void			resort(t_stack *pile);
+char			*get_next_line(int fd);
