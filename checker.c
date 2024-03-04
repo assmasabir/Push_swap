@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 23:08:48 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 14:42:50 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 16:15:34 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,23 @@ int	check_if_stack_sorted(t_stack *a)
 	return (1);
 }
 
+void	free_both_and_exit(t_stack *a, t_stack *b, int display)
+{
+	t_node	*tmp;
+
+	if (b && b->head)
+	{
+		while (b->head)
+		{
+			tmp = b->head;
+			b->head = b->head->next;
+			free(tmp);
+		}
+		free(b);
+	}
+	free_and_exit(a, display);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**str;
@@ -100,10 +117,10 @@ int	main(int argc, char **argv)
 	b = initialize_b_t_stack();
 	i = read_and_move(a, b);
 	if (i == 0)
-		free_and_exit(a, b, 1);
+		free_both_and_exit(a, b, 1);
 	if (!check_if_stack_sorted(a))
 		ft_putstr_fd("KO\n", 1);
 	else
 		ft_putstr_fd("OK\n", 1);
-	free_and_exit(a, b, 0);
+	free_both_and_exit(a, b, 0);
 }

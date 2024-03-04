@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 14:44:38 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/04 16:11:19 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void	sort_large_t_stack(t_stack *a, t_stack *b, int size_of_a)
 	set_cost(a, b);
 	big_sort(a, b);
 	resort(a);
+}
+
+void	clean_up(t_stack *a, t_stack *b)
+{
+	free_and_exit(a, 0);
+	if (b)
+		free(b);
 }
 
 int	main(int argc, char **argv)
@@ -54,5 +61,5 @@ int	main(int argc, char **argv)
 		three_sort(a);
 	else if (size_of_a > 3)
 		sort_large_t_stack(a, b, size_of_a);
-	free_and_exit(a, b, 0);
+	clean_up(a, b);
 }
