@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_sort.c                                      :+:      :+:    :+:   */
+/*   three_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:12:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 13:17:27 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:56:39 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static int	get_max_rank(t_stack *pile)
 	int		max;
 	t_node	*current;
 
-	max = pile->head->final_rank;
+	max = pile->head->order;
 	current = pile->head->next;
 	while (current != NULL)
 	{
-		if (current->final_rank > max)
-			max = current->final_rank;
+		if (current->order > max)
+			max = current->order;
 		current = current->next;
 	}
 	return (max);
@@ -33,16 +33,16 @@ void	three_sort(t_stack *pile)
 	int	max;
 
 	max = get_max_rank(pile);
-	if (pile->head->final_rank == max)
+	if (pile->head->order == max)
 	{
-		ra(pile);
+		ra(pile, 1);
 	}
-	else if (pile->head->next->final_rank == max)
+	else if (pile->head->next->order == max)
 	{
-		rra(pile);
+		rra(pile, 1);
 	}
-	if (pile->head->final_rank > pile->head->next->final_rank)
+	if (pile->head->order > pile->head->next->order)
 	{
-		sa(pile);
+		sa(pile, 1);
 	}
 }

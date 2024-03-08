@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:07:34 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 14:10:00 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:42:45 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,24 @@ void	swap(t_stack *pile)
 	}
 }
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, int display)
 {
 	swap(a);
-	write(1, "sa\n", 3);
+	if (display == 1)
+		write(1, "sa\n", 3);
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, int display)
 {
 	swap(b);
-	write(1, "sb\n", 3);
+	if (display == 1)
+		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, int display)
 {
 	swap(a);
 	swap(b);
-	write(1, "ss\n", 3);
+	if (display == 1)
+		write(1, "ss\n", 3);
 }

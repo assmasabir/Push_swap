@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 16:11:19 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:45:58 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	handle_two_numbers(t_stack *a, int size_of_a)
 {
 	if (size_of_a == 2 && a->head->value > a->head->next->value)
-		sa(a);
+		sa(a, 1);
 }
 
 void	sort_large_t_stack(t_stack *a, t_stack *b, int size_of_a)
@@ -49,10 +49,10 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		str = ft_split(argv[1], ' ');
-		a = create_t_stack(str, argc - 1);
+		a = create_t_stack(str);
 	}
 	else
-		a = create_t_stack(argv + 1, argc - 1);
+		a = create_t_stack(argv + 1);
 	size_of_a = ft_lstsize(a);
 	b = initialize_b_t_stack();
 	update_position(&(a->head));

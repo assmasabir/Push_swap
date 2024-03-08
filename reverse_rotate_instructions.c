@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotae_instructions.c                       :+:      :+:    :+:   */
+/*   reverse_rotate_instructions.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:58:32 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 14:14:13 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:44:20 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,24 @@ void	reverse_rotate(t_stack *pile)
 	}
 }
 
-void	rra(t_stack *a)
+void	rra(t_stack *a, int display)
 {
 	reverse_rotate(a);
-	write(1, "rra\n", 4);
+	if (display == 1)
+		write(1, "rra\n", 4);
 }
 
-void	rrb(t_stack *b)
+void	rrb(t_stack *b, int display)
 {
 	reverse_rotate(b);
-	write(1, "rrb\n", 4);
+	if (display == 1)
+		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b, int display)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	if (display == 1)
+		write(1, "rrr\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 22:14:11 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:56:39 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ typedef struct node
 {
 	int			value;
 	int			position;
-	int			final_rank;
+	int			order;
 	int			cost;
-	int			capacity;
 	struct node	*cible;
 	struct node	*next;
 }				t_node;
@@ -42,7 +41,7 @@ void			ft_putstr_fd(char *s, int fd);
 int				ft_isdigit(int c);
 int				ft_strcmp(const char *s1, const char *s2);
 
-t_stack			*create_t_stack(char **str, int capacity);
+t_stack			*create_t_stack(char **str);
 void			update_position(t_node **a);
 t_stack			*initialize_b_t_stack(void);
 void			three_sort(t_stack *pile);
@@ -53,24 +52,24 @@ void			set_cost(t_stack *a, t_stack *b);
 void			big_sort(t_stack *a, t_stack *b);
 void			resort(t_stack *pile);
 
-void			pa(t_stack *a, t_stack *b);
-void			pb(t_stack *b, t_stack *a);
-void			sa(t_stack *a);
-void			sb(t_stack *b);
-void			ss(t_stack *a, t_stack *b);
-void			ra(t_stack *a);
-void			rb(t_stack *b);
-void			rr(t_stack *a, t_stack *b);
-void			rra(t_stack *a);
-void			rrb(t_stack *b);
-void			rrr(t_stack *a, t_stack *b);
+void			pa(t_stack *a, t_stack *b, int display);
+void			pb(t_stack *b, t_stack *a, int display);
+void			sa(t_stack *a, int display);
+void			sb(t_stack *b, int display);
+void			ss(t_stack *a, t_stack *b, int display);
+void			ra(t_stack *a, int display);
+void			rb(t_stack *b, int display);
+void			rr(t_stack *a, t_stack *b, int display);
+void			rra(t_stack *a, int display);
+void			rrb(t_stack *b, int display);
+void			rrr(t_stack *a, t_stack *b, int display);
 
 void			swap(t_stack *pile);
 void			push(t_stack *s1, t_stack *s2);
 void			rotate(t_stack *pile);
 void			reverse_rotate(t_stack *pile);
-void			set_final_rank(t_stack *pile);
-int				less_median(int final_rank, int size);
+void			set_order(t_stack *pile);
+int				less_median(int order, int size);
 int				cost_sum(int cost_a, int cost_b);
 t_node			*find_node_with_smallest_cost(t_stack *b);
 

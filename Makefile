@@ -23,8 +23,7 @@ SRC = \
     libft_functions1.c      \
     libft_functions3.c      \
     errors.c                \
-    resort.c                \
-    visualize.c
+    resort.c                 
 
 SRC2 =  \
     set_rank.c              \
@@ -38,7 +37,7 @@ SRC2 =  \
     set_costs.c             \
     move_nodes.c            \
     libft_functions2.c      \
-    checker.c               \
+    checker_bonus.c               \
     push_swap_utils.c       \
     three_sort.c            \
     libft_functions1.c      \
@@ -46,8 +45,7 @@ SRC2 =  \
     errors.c                \
     resort.c                \
     get_next_line/get_next_line.c         \
-    get_next_line/get_next_line_utils.c   \
-    visualize.c
+    get_next_line/get_next_line_utils.c   
 
 OBJS = $(addprefix $(OBJ_D)/,${SRC:.c=.o})
 OBJB = $(addprefix $(OBJ_D)/,$(SRC2:.c=.o))

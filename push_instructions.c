@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:10:51 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 14:31:11 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:45:41 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,20 @@ void	push(t_stack *s1, t_stack *s2)
 	}
 }
 
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_stack *a, t_stack *b, int display)
 {
 	push(b, a);
-	write(1, "pa\n", 3);
+	if (display == 1)
+	{
+		write(1, "pa\n", 3);
+	}
 }
 
-void	pb(t_stack *b, t_stack *a)
+void	pb(t_stack *b, t_stack *a, int display)
 {
 	push(a, b);
-	write(1, "pb\n", 3);
+	if (display == 1)
+	{
+		write(1, "pb\n", 3);
+	}
 }

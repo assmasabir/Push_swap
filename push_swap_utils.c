@@ -6,13 +6,13 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:25:08 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/04 16:15:10 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:56:39 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_node	*create_t_node(int value, int capacity)
+static t_node	*create_t_node(int value)
 {
 	t_node	*pm;
 
@@ -21,8 +21,7 @@ static t_node	*create_t_node(int value, int capacity)
 	{
 		pm->value = value;
 		pm->position = 0;
-		pm->capacity = capacity;
-		pm->final_rank = -1;
+		pm->order = -1;
 		pm->next = NULL;
 	}
 	return (pm);
@@ -43,7 +42,7 @@ void	add_node_to_stack(t_stack *pile, t_node *pm)
 	}
 }
 
-t_stack	*create_t_stack(char **str, int capacity)
+t_stack	*create_t_stack(char **str)
 {
 	int		i;
 	int		nbr;
@@ -61,11 +60,11 @@ t_stack	*create_t_stack(char **str, int capacity)
 		if (!check_if_number(str[i]) || !check_if_integer(nbr)
 			|| !check_duplicate(pile, nbr))
 			free_and_exit(pile, 1);
-		pm = create_t_node(nbr, capacity);
+		pm = create_t_node(nbr);
 		add_node_to_stack(pile, pm);
 		i++;
 	}
-	set_final_rank(pile);
+	set_order(pile);
 	return (pile);
 }
 

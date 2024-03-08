@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:07:28 by asabir            #+#    #+#             */
-/*   Updated: 2024/02/29 14:13:11 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/08 17:42:09 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,30 @@ void	rotate(t_stack *pile)
 	}
 }
 
-void	ra(t_stack *a)
+void	ra(t_stack *a, int display)
 {
 	rotate(a);
-	write(1, "ra\n", 3);
+	if (display == 1)
+	{
+		write(1, "ra\n", 3);
+	}
 }
 
-void	rb(t_stack *b)
+void	rb(t_stack *b, int display)
 {
 	rotate(b);
-	write(1, "rb\n", 3);
+	if (display == 1)
+	{
+		write(1, "rb\n", 3);
+	}
 }
 
-void	rr(t_stack *a, t_stack *b)
+void	rr(t_stack *a, t_stack *b, int display)
 {
 	rotate(a);
 	rotate(b);
-	write(1, "rr\n", 3);
+	if (display == 1)
+	{
+		write(1, "rr\n", 3);
+	}
 }
