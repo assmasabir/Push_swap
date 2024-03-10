@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/08 17:45:58 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/10 20:13:51 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,17 @@ void	sort_large_t_stack(t_stack *a, t_stack *b, int size_of_a)
 	resort(a);
 }
 
-void	clean_up(t_stack *a, t_stack *b)
+void	clean_up(t_stack *a, t_stack *b, char **str)
 {
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 	free_and_exit(a, 0);
 	if (b)
 		free(b);
@@ -46,20 +55,15 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		exit(EXIT_FAILURE);
-	else if (argc == 2)
-	{
-		str = ft_split(argv[1], ' ');
-		a = create_t_stack(str);
-	}
-	else
-		a = create_t_stack(argv + 1);
+	str = arg_join(argc, argv);
+	a = create_t_stack(str);
 	size_of_a = ft_lstsize(a);
 	b = initialize_b_t_stack();
 	update_position(&(a->head));
 	handle_two_numbers(a, size_of_a);
-	if (argc - 1 == 3)
+	if (size_of_a == 3)
 		three_sort(a);
 	else if (size_of_a > 3)
 		sort_large_t_stack(a, b, size_of_a);
-	clean_up(a, b);
+	clean_up(a, b, str);
 }

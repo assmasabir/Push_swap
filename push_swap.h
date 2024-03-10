@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:39 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/10 20:13:17 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int				ft_atoi(const char *str);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_isdigit(int c);
 int				ft_strcmp(const char *s1, const char *s2);
+char			*ft_strjoin(char const *s1, char const *s2);
+void			*ft_calloc(size_t nmemb, size_t size);
 
 t_stack			*create_t_stack(char **str);
 void			update_position(t_node **a);
@@ -82,3 +84,4 @@ void			resort(t_stack *pile);
 char			*get_next_line(int fd);
 void			update_stacks(t_stack *a, t_stack *b);
 void			push_and_update(t_stack *a, t_stack *b);
+char			**arg_join(int argc, char **argv);
