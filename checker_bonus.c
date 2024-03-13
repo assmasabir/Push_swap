@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 23:08:48 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/08 17:55:15 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:09:04 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,8 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		exit(EXIT_FAILURE);
-	else if (argc == 2)
-	{
-		str = ft_split(argv[1], ' ');
-		a = create_t_stack(str);
-	}
-	else
-		a = create_t_stack(argv + 1);
+	str = arg_join(argc, argv);
+	a = create_t_stack(str);
 	b = initialize_b_t_stack();
 	i = read_and_move(a, b);
 	if (i == 0)

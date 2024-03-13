@@ -6,11 +6,11 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 19:01:05 by asabir            #+#    #+#             */
-/*   Updated: 2023/12/31 21:15:39 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/13 14:55:41 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../push_swap.h"
 
 char	*read_and_join_helper(char **reserve)
 {

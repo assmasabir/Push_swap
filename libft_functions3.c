@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 01:29:48 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/10 20:16:10 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/13 14:44:44 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*allocate(char const *s1, char const *s2)
 	return (res);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*res;
 	int		i;
@@ -61,6 +61,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	res[i] = '\0';
+	free(s1);
 	return (res);
 }
 

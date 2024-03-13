@@ -6,17 +6,17 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 01:13:16 by asabir            #+#    #+#             */
-/*   Updated: 2023/12/28 17:44:46 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/13 14:59:02 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../push_swap.h"
 
 char	*free_and_join(char **reserve, char *buff)
 {
 	char	*temp;
 
-	temp = ft_strjoin(*reserve, buff);
+	temp = ft_strjoinn(*reserve, buff);
 	free(*reserve);
 	if (temp == NULL)
 		return (NULL);
@@ -37,19 +37,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoinn(char const *s1, char const *s2)
 {
 	size_t	len1;
 	size_t	len2;
