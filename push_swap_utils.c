@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:25:08 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:39 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/18 02:57:03 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	add_node_to_stack(t_stack *pile, t_node *pm)
 t_stack	*create_t_stack(char **str)
 {
 	int		i;
-	int		nbr;
+	long	nbr;
 	t_node	*pm;
 	t_stack	*pile;
 

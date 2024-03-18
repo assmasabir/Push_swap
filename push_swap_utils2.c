@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:12:04 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/10 20:16:16 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/18 02:55:36 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void	push_and_update(t_stack *a, t_stack *b)
 	update_stacks(a, b);
 }
 
-int	is_empty(char *av)
+int	is_empty(char *argv)
 {
 	int	i;
 
 	i = 0;
-	if (!av[i])
+	if (!argv[i])
 		return (0);
-	while (av[i])
+	while (argv[i])
 	{
-		if (av[i] != ' ')
+		if (argv[i] != ' ')
 			return (1);
 		i++;
 	}

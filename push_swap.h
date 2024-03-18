@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/13 14:51:13 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/18 02:53:38 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct stack
 int				ft_lstsize(t_stack *lst);
 t_node			*ft_lstlast(t_node *lst);
 char			**ft_split(const char *s, char c);
-int				ft_atoi(const char *str);
+long			ft_atoi(const char *str);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_isdigit(int c);
 int				ft_strcmp(const char *s1, const char *s2);

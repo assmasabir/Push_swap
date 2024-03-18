@@ -6,13 +6,13 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:03:55 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/02 18:52:38 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/18 02:53:11 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	long	res;
 	int		i;
