@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:14:47 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/18 02:53:38 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/25 02:49:36 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,4 @@ char			*get_next_line(int fd);
 void			update_stacks(t_stack *a, t_stack *b);
 void			push_and_update(t_stack *a, t_stack *b);
 char			**arg_join(int argc, char **argv);
+int				check_if_stack_sorted(t_stack *a);

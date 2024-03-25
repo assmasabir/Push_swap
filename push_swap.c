@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:18:56 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/10 20:13:51 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/25 03:33:48 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	main(int argc, char **argv)
 	a = create_t_stack(str);
 	size_of_a = ft_lstsize(a);
 	b = initialize_b_t_stack();
+	if (check_if_stack_sorted(a))
+		clean_up(a, b, str);
 	update_position(&(a->head));
 	handle_two_numbers(a, size_of_a);
 	if (size_of_a == 3)

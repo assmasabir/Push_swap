@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:03:55 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/18 02:53:11 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/25 03:15:42 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long	ft_atoi(const char *str)
 {
-	long	res;
+	double	res;
 	int		i;
 	int		sign;
 
@@ -35,6 +35,8 @@ long	ft_atoi(const char *str)
 		res = (str[i] - '0') + (res * 10);
 		i++;
 	}
+	if (res < INT_MIN && res > INT_MAX)
+		res = 922337203685477580;
 	return (sign * res);
 }
 

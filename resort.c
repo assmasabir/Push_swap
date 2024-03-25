@@ -6,11 +6,28 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:28:33 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:39 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/25 02:49:19 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_if_stack_sorted(t_stack *a)
+{
+	t_node	*temp;
+
+	temp = a->head;
+	while (temp && temp->next)
+	{
+		if (temp->value < temp->next->value)
+		{
+			temp = temp->next;
+		}
+		else
+			return (0);
+	}
+	return (1);
+}
 
 void	find_min_value_and_rank(t_stack *pile, int *min, int *min_order)
 {

@@ -6,7 +6,7 @@
 /*   By: asabir <asabir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 23:08:48 by asabir            #+#    #+#             */
-/*   Updated: 2024/03/13 15:09:04 by asabir           ###   ########.fr       */
+/*   Updated: 2024/03/25 03:32:55 by asabir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	apply_instructions_on_stack(char *inst, t_stack *a, t_stack *b)
 		sa(a, 0);
 	else if (ft_strcmp(inst, "sb\n") == 0)
 		sb(b, 0);
+	else if (ft_strcmp(inst, "ss\n") == 0)
+		ss(b, b, 0);
 	else if (ft_strcmp(inst, "ra\n") == 0)
 		ra(a, 0);
 	else if (ft_strcmp(inst, "rb\n") == 0)
@@ -58,23 +60,6 @@ int	read_and_move(t_stack *a, t_stack *b)
 			}
 		}
 		free(inst);
-	}
-	return (1);
-}
-
-int	check_if_stack_sorted(t_stack *a)
-{
-	t_node	*temp;
-
-	temp = a->head;
-	while (temp && temp->next)
-	{
-		if (temp->value < temp->next->value)
-		{
-			temp = temp->next;
-		}
-		else
-			return (0);
 	}
 	return (1);
 }
